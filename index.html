@@ -1,0 +1,86 @@
+<style>
+@import url(https://fonts.googleapis.com/css?family=Prompt:900);
+html {
+  font-family: 'Prompt', sans-serif;
+  background-color: #000;
+  color: #fff;
+  font-size: 5vw;
+}
+
+container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
+#outer {
+  text-align: center;
+}
+
+#inner {
+  display: inline-block;
+}
+
+#app {
+  margin-left: 20px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+</style>
+
+<script>
+window.onload = function() {
+  pyjs();
+};
+
+function pyjs() {
+  const items = [
+    'Python',
+    'unikernels',
+    'FTW'
+  ]
+  const app = document.getElementById('app')
+  let count = 0 
+  let index = 0
+  let typingEffect = () => {
+    let text = items[index]
+    if (count < text.length) {
+      setTimeout(() => {
+        app.innerHTML += text[count]
+        count++
+        typingEffect()
+      }, Math.floor(Math.random(10) * 100))
+    } else {
+      count = 0;
+      index = (index + 1 < items.length) ? index + 1 : 0
+      setTimeout(() => {
+        app.innerHTML = ''
+        typingEffect()
+      }, 1500)
+    }
+  }
+
+  typingEffect()
+}
+</script>
+
+<container>
+
+<div id="outer">
+  <div id="inner">
+    <img src="/python.png"/>
+  </div>
+</div>
+
+  <div id="app"></div>
+</container>
