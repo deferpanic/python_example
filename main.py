@@ -3,8 +3,11 @@ import socketserver
 
 class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
+        prefix = "/python/lib/python3.5/site-packages/"
         if self.path == '/':
-            self.path = '/index.html'
+            self.path = prefix + 'index.html'
+        else:
+            self.path = prefix + self.path
         return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
 def http_server():
